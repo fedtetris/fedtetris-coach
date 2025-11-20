@@ -5,7 +5,8 @@
 ## 🚀 Key Features
 
 *   **Real-time AI Coach:** Uses **FLock.io (Qwen-32b)** to analyze your board and suggest the best moves.
-*   **Federated KV Cache:** A 3-layer caching system (Memory -> SQLite -> FLock API) that "learns" from every player. Once a strategy for a specific board state is generated, it's cached and shared globally, reducing latency and API costs.
+*   **Federated KV Cache:** A 3-layer caching system (Memory -> SQLite -> FLock API) that "learns" from every player.
+    *   **Fuzzy Matching:** Uses feature bucketing (heights, holes, bumpiness) to group similar board states, drastically increasing cache hit rates for "strategically identical" situations.
 *   **Strategy Snapshots:** (Concept) Gameplay logs are aggregated to create verifiable "Strategy Assets" (NFTs) on Base.
 *   **Base Mini App Ready:** Fully integrated with **Coinbase Wallet** and **OnchainKit**.
 *   **Network Resilience:** Robust AI polling with timeouts, retries, and exponential backoff ensures smooth gameplay even on slow networks.
@@ -24,6 +25,7 @@
 *   **L0 Cache:** In-memory Map for sub-millisecond hot access.
 *   **L1 Cache:** **AgentFS (SQLite)** for persistent storage of strategies and replays.
 *   **FLock Client:** OpenAI-compatible client connecting to FLock's decentralized AI network.
+*   **Fuzzy Fingerprinter:** Extracts semantic features (column heights, holes, bumpiness) to create robust cache keys.
 
 ## 🛠 Setup & Run
 
@@ -55,6 +57,7 @@ Open `http://localhost:3000` to play!
 ### ✅ Implemented
 *   **Full Tetris Game Loop & Engine.**
 *   **Federated KV Cache Logic:** L0/L1/L2 hierarchy is fully functional.
+*   **Fuzzy Semantic Hashing:** Cache keys now match similar board states, not just exact pixels.
 *   **FLock Integration:** Client is wired up to call Qwen (graceful fallback to mock if key is missing).
 *   **Wallet Connection:** Users can connect Coinbase/Base wallets via OnchainKit.
 *   **Replay Upload:** Game logs are uploaded to the backend upon "Game Over", linked to the user's wallet address.
