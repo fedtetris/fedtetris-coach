@@ -14,7 +14,7 @@
     "iconUrl": "https://fedtetris-coach.vercel.app/b.jpg",
     "splashImageUrl": "https://fedtetris-coach.vercel.app/b.jpg",
     "splashBackgroundColor": "#000000",
-    "subtitle": "Federated Learning Tetris Coach",
+    "subtitle": "Federated Tetris Coach",
     "description": "A Tetris coach powered by Federated Learning.",
     "screenshotUrls": [
       "https://fedtetris-coach.vercel.app/b.jpg"
