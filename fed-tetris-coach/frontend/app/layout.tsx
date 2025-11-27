@@ -7,7 +7,7 @@ import { MiniAppBootstrap } from './miniapp-bootstrap';
 const MINIAPP = {
   name: 'FedTetris Coach',
   description: 'Federated Learning Tetris Coach',
-  embedImageUrl: 'https://fedtetris-coach.vercel.app/og.png',
+  embedImageUrl: 'https://fedtetris-coach.vercel.app/b.jpg',
   homeUrl: 'https://fedtetris-coach.vercel.app',
 };
 
