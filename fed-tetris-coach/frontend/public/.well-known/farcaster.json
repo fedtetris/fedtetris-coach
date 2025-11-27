@@ -4,9 +4,6 @@
     "payload": "",
     "signature": ""
   },
-  "baseBuilder": {
-    "ownerAddress": "0x50A848BBB481Ca66e2ED4fdb9dCb4D98bF283a6b"
-  },
   "miniapp": {
     "version": "1",
     "name": "FedTetris Coach",
@@ -31,5 +28,8 @@
     "ogDescription": "Federated Learning Tetris Coach",
     "ogImageUrl": "https://fedtetris-coach.vercel.app/og.png",
     "noindex": true
+  },
+  "baseBuilder": {
+    "ownerAddress": "0x50A848BBB481Ca66e2ED4fdb9dCb4D98bF283a6b"
   }
 }
