@@ -7,8 +7,8 @@ import { MiniAppBootstrap } from './miniapp-bootstrap';
 const MINIAPP = {
   name: 'FedTetris Coach',
   description: 'Federated Learning Tetris Coach',
-  embedImageUrl: 'https://your-domain.com/og.png', // TODO: Update with actual URL
-  homeUrl: 'https://your-domain.com', // TODO: Update with actual URL
+  embedImageUrl: 'https://fedtetris-coach.vercel.app/og.png',
+  homeUrl: 'https://fedtetris-coach.vercel.app',
 };
 
 export const metadata: Metadata = {
