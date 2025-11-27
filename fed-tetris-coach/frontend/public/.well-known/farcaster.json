@@ -1,0 +1,32 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "baseBuilder": {
+    "ownerAddress": "0x..." 
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "FedTetris Coach",
+    "homeUrl": "https://your-domain.com",
+    "iconUrl": "https://your-domain.com/icon.png",
+    "splashImageUrl": "https://your-domain.com/splash.png",
+    "splashBackgroundColor": "#000000",
+
+    "subtitle": "Federated Learning Tetris Coach",
+    "description": "A Tetris coach powered by Federated Learning.",
+    "screenshotUrls": [
+      "https://your-domain.com/screen1.png"
+    ],
+    "primaryCategory": "social",
+    "tags": ["tetris", "ai", "miniapp"],
+    "heroImageUrl": "https://your-domain.com/og.png",
+    "tagline": "Master Tetris with AI",
+    "ogTitle": "FedTetris Coach",
+    "ogDescription": "Federated Learning Tetris Coach",
+    "ogImageUrl": "https://your-domain.com/og.png",
+    "noindex": true
+  }
+}

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@coinbase/onchainkit": "^0.33.5",
+    "@farcaster/miniapp-sdk": "^0.2.1",
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
