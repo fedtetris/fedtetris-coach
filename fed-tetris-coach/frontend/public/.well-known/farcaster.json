@@ -1,4 +1,9 @@
 {
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
   "baseBuilder": {
     "ownerAddress": "0x50A848BBB481Ca66e2ED4fdb9dCb4D98bF283a6b"
   },
@@ -6,13 +11,13 @@
     "version": "1",
     "name": "FedTetris Coach",
     "homeUrl": "https://fedtetris-coach.vercel.app",
-    "iconUrl": "https://fedtetris-coach.vercel.app/icon.png",
-    "splashImageUrl": "https://fedtetris-coach.vercel.app/splash.png",
+    "iconUrl": "https://fedtetris-coach.vercel.app/b.jpg",
+    "splashImageUrl": "https://fedtetris-coach.vercel.app/b.jpg",
     "splashBackgroundColor": "#000000",
     "subtitle": "Federated Learning Tetris Coach",
     "description": "A Tetris coach powered by Federated Learning.",
     "screenshotUrls": [
-      "https://fedtetris-coach.vercel.app/screen1.png"
+      "https://fedtetris-coach.vercel.app/b.jpg"
     ],
     "primaryCategory": "social",
     "tags": [
@@ -20,11 +25,11 @@
       "ai",
       "miniapp"
     ],
-    "heroImageUrl": "https://fedtetris-coach.vercel.app/og.png",
+    "heroImageUrl": "https://fedtetris-coach.vercel.app/b.jpg",
     "tagline": "Master Tetris with AI",
     "ogTitle": "FedTetris Coach",
     "ogDescription": "Federated Learning Tetris Coach",
-    "ogImageUrl": "https://fedtetris-coach.vercel.app/og.png",
+    "ogImageUrl": "https://fedtetris-coach.vercel.app/b.jpg",
     "noindex": true
   }
 }
