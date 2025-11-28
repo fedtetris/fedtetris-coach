@@ -1,20 +1,28 @@
-import Tetris from '../components/TetrisBoard';
-import { WalletComponents } from '../components/WalletComponents';
+'use client';
+
+import React from 'react';
+import Tetris from '@/components/TetrisBoard';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// Setup QueryClient
+const queryClient = new QueryClient();
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-8">
-      <div className="w-full max-w-4xl flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-2">FedTetris Coach Studio</h1>
-          <p className="text-gray-600">
-            Federated Learning + KV Cache powered Tetris Coach.
-          </p>
+    <QueryClientProvider client={queryClient}>
+      <main className="min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center p-4">
+        <div className="w-full max-w-6xl mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-4xl font-black tracking-tighter bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Strategy Asset Studio
+            </h1>
+            <p className="text-slate-400">FedRL Coach Studio</p>
+          </div>
         </div>
-        <WalletComponents />
-      </div>
-      
-      <Tetris />
-    </main>
+
+        <Tetris />
+
+      </main>
+    </QueryClientProvider>
   );
 }

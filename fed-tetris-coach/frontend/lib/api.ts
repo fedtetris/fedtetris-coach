@@ -7,9 +7,8 @@ export interface CoachAdvice {
 }
 
 export const fetchCoachAdvice = async (
-  state: any, 
-  playerProfile: any, 
-  walletAddress?: string,
+  state: any,
+  playerProfile: any,
   opts: { timeoutMs?: number; retries?: number; signal?: AbortSignal } = {}
 ): Promise<CoachAdvice> => {
   const { timeoutMs = 4000, retries = 1, signal } = opts;
@@ -18,16 +17,16 @@ export const fetchCoachAdvice = async (
   while (attempt <= retries) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-    
+
     // If parent signal aborts, abort our fetch too
     const onAbort = () => controller.abort();
     if (signal) {
-        if (signal.aborted) {
-            clearTimeout(timeoutId);
-            // Don't even try
-            return { recommendedAction: 'Unknown', explanation: 'Request aborted' };
-        }
-        signal.addEventListener('abort', onAbort);
+      if (signal.aborted) {
+        clearTimeout(timeoutId);
+        // Don't even try
+        return { recommendedAction: 'Unknown', explanation: 'Request aborted' };
+      }
+      signal.addEventListener('abort', onAbort);
     }
 
     try {
@@ -36,7 +35,11 @@ export const fetchCoachAdvice = async (
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ state, playerProfile, walletAddress }),
+        // Match the backend expectation: { state: { ... }, playerProfile: ... }
+        body: JSON.stringify({
+          state,
+          playerProfile,
+        }),
         signal: controller.signal,
       });
 
@@ -54,9 +57,9 @@ export const fetchCoachAdvice = async (
 
       const isAbort = error.name === 'AbortError';
       if (isAbort) {
-          // If it was OUR timeout, treat as retryable (unless max retries)
-          // If it was PARENT signal, stop
-          if (signal?.aborted) throw error;
+        // If it was OUR timeout, treat as retryable (unless max retries)
+        // If it was PARENT signal, stop
+        if (signal?.aborted) throw error;
       }
 
       if (attempt === retries) {
@@ -66,16 +69,16 @@ export const fetchCoachAdvice = async (
           explanation: 'Coach is offline or slow.',
         };
       }
-      
+
       // Exponential backoff
       await new Promise(r => setTimeout(r, 300 * (2 ** attempt)));
       attempt++;
     }
   }
-  
+
   return {
-      recommendedAction: 'Unknown',
-      explanation: 'Coach is offline.'
+    recommendedAction: 'Unknown',
+    explanation: 'Coach is offline.'
   };
 };
 
@@ -87,7 +90,7 @@ export const uploadReplay = async (
     // Fire and forget, but with timeout so it doesn't hang browser resources
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), 10000);
-    
+
     await fetch(`${BACKEND_URL}/api/replay`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

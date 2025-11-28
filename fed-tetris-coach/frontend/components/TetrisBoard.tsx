@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createStage, checkCollision, randomTetromino, ROWS, COLS } from '../lib/tetris'; // Fixed import
 import { fetchCoachAdvice, uploadReplay, CoachAdvice } from '../lib/api';
 import CoachPanel from './CoachPanel';
-import { useAccount } from 'wagmi';
+import { MintStrategyPanel } from './MintStrategyPanel';
 
 // Styles
 const cellStyle = (color: string) => ({
@@ -36,7 +36,6 @@ function useInterval(callback: () => void, delay: number | null) {
 }
 
 const Tetris = () => {
-  const { address } = useAccount();
   const [dropTime, setDropTime] = useState<number | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
@@ -89,7 +88,7 @@ const Tetris = () => {
     // Increase level every 10 rows
     if (rows > (level + 1) * 10) {
       setLevel((prev) => prev + 1);
-      setDropTime(1000 / (level + 1) + 200);
+      setDropTime(1000 / (level + 1) + 2000); // Much slower scaling
     }
 
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
@@ -105,7 +104,7 @@ const Tetris = () => {
           episodes: replayLog.current,
           score,
           level
-        }, address);
+        }, 'anon');
       }
       updatePlayerPos({ x: 0, y: 0, collided: true });
     }
@@ -159,8 +158,8 @@ const Tetris = () => {
 
   const rotate = (matrix: any, dir: number) => {
     // Transpose
-    const rotatedTetro = matrix.map((_: any, index: number) =>
-      matrix.map((col: any) => col[index])
+    const rotatedTetro = matrix[0].map((_: any, index: number) =>
+      matrix.map((row: any) => row[index])
     );
     // Reverse rows to rotate
     if (dir > 0) return rotatedTetro.map((row: any) => row.reverse());
@@ -254,7 +253,6 @@ const Tetris = () => {
         const newAdvice = await fetchCoachAdvice(
           stateSummary,
           { level: 'intermediate' },
-          address,
           { signal: controller.signal, timeoutMs: 4000, retries: 2 }
         );
         setAdvice(newAdvice);
@@ -269,7 +267,7 @@ const Tetris = () => {
       clearInterval(aiInterval);
       controller.abort();
     };
-  }, [gameOver, address]);
+  }, [gameOver]);
 
   return (
     <div className="flex gap-8 w-full max-w-4xl mx-auto outline-none" role="button" tabIndex={0} onKeyDown={(e) => move(e)} onKeyUp={keyUp}>
@@ -303,11 +301,15 @@ const Tetris = () => {
           <div>Score: {score}</div>
           <div>Rows: {rows}</div>
           <div>Level: {level}</div>
-          {address && <div className="text-xs mt-2 text-gray-400 truncate">Wallet: {address}</div>}
         </div>
 
         <div className="flex-grow">
           <CoachPanel advice={advice} isLoading={loadingAdvice} />
+          {gameOver && (
+            <div className="mt-4">
+              <MintStrategyPanel replayId="mock-replay-id" />
+            </div>
+          )}
         </div>
 
         <button className="bg-green-600 text-white font-bold py-3 rounded-lg shadow-lg hover:bg-green-500" onClick={startGame}>
