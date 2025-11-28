@@ -70,7 +70,7 @@ Player Profile: ${playerProfile.level || "intermediate"}
     }
 
     const completion = await client.chat.completions.create({
-      model: "anthropic/claude-opus-4.5", // User's choice
+      model: "qwen/qwen3-next-80b-a3b-instruct",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
